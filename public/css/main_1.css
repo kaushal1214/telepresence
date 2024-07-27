@@ -1,0 +1,27 @@
+body {
+	margin: 0;
+	background-color: #000;
+}
+video {
+	border: 0.5px solid gray;
+  }
+
+#container {
+	position: relative;
+	display: block;
+	margin: 0 auto;
+	width: 350px;
+}
+
+#localVideo {
+	width: 50%;
+  }
+
+#remoteVideo{
+	width: 100%;
+}
+@media only screen and (max-width: 600px) {
+    #container {
+        width: 100%;
+    }
+}
