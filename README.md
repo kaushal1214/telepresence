@@ -1,7 +1,7 @@
 # Telepresence Robot Server
 Nodejs Server to create websocket connection and simple HTML rendering to handle Audio/Video communication
 
-Prequisties
+Prequistiesss
 * Nodejs LTS
 * Webcam/Inbuilt-cam
 * Mic
