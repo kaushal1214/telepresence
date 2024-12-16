@@ -238,6 +238,18 @@ function requestTurn(turnURL) {
   }
 }
 
+function controlRobot(dataFrame){
+  if(Android){
+    Android.controlTheBot(dataFrame)
+  }
+}
+
+socket.on('control',function data(data){
+  controlRobot(data)
+});
+
+
+
 
 function handleRemoteStreamRemoved(event) {
   console.log('Remote stream removed. Event: ', event);
