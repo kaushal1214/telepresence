@@ -245,6 +245,7 @@ function controlRobot(dataFrame){
 }
 
 socket.on('control',function data(data){
+  console.log(data)
   controlRobot(data)
 });
 
@@ -260,6 +261,10 @@ function hangup() {
   stop();
   sendMessage('bye');
   socket.emit('control',{status:'disconnected'});
+  socket.delete('kaushal',(data)=>{
+    console.log("room deleted")
+    console.log(data)
+  })
 }
 
 function handleRemoteHangup() {
