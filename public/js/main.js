@@ -14,6 +14,8 @@ var pcConfig = {
   }]
 };
 
+
+
 // Set up audio and video regardless of what devices are present.
 var sdpConstraints = {
   offerToReceiveAudio: true,
@@ -27,6 +29,15 @@ var room = 'kaushal';
 // room = prompt('Enter room name:');
 
 var socket = io.connect();
+
+navigator.mediaDevices.getUserMedia({
+      audio: true,
+      video: true
+    })
+    .then(gotStream)
+    .catch(function(e) {
+      alert('getUserMedia() error: ' + e.name);
+    });
 
 if (room !== '') {
   socket.emit('create or join', room);
@@ -110,9 +121,9 @@ function gotStream(stream) {
   localStream = stream;
   localVideo.srcObject = stream;
   sendMessage('got user media');
-  if (isInitiator) {
-    maybeStart();
-  }
+  // if (isInitiator) {
+  //   maybeStart();
+  // }
 }
 
 var constraints = {
@@ -150,15 +161,9 @@ function createPeerConnection() {
     pc.onicecandidate = handleIceCandidate;
     pc.onaddstream = handleRemoteStreamAdded;
     pc.onremovestream = handleRemoteStreamRemoved;
+    
     console.log('Created RTCPeerConnnection');
-    navigator.mediaDevices.getUserMedia({
-      audio: true,
-      video: true
-    })
-    .then(gotStream)
-    .catch(function(e) {
-      alert('getUserMedia() error: ' + e.name);
-    });
+    
   } catch (e) {
     console.log('Failed to create PeerConnection, exception: ' + e.message);
     alert('Cannot create RTCPeerConnection object.');
@@ -171,8 +176,8 @@ function handleIceCandidate(event) {
   if (event.candidate) {
     sendMessage({
       type: 'candidate',
-      label: event.candidate.sdpMLineIndex,
-      id: event.candidate.sdpMid,
+      sdpMLineIndex: event.candidate.sdpMLineIndex,
+      sdpMid: event.candidate.sdpMid,
       candidate: event.candidate.candidate
     });
   } else {
