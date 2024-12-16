@@ -215,13 +215,14 @@ function requestTurn(turnURL) {
   var turnExists = false;
 
   pcConfig.iceServers.push({
-            urls: 'turn:openrelay.metered.ca:80',
-            username: 'openrelayproject',
-            credentials: 'openrelayproject'
-        });
+    url: 'turn:turn.anyfirewall.com:443?transport=tcp',
+    credential: 'webrtc',
+    username: 'webrtc'
+});
   turnReady = true;
   turnExists = true;
-  
+  return;
+  // Stopping here
   for (var i in pcConfig.iceServers) {
     if (pcConfig.iceServers[i].urls.substr(0, 5) === 'turn:') {
       turnExists = true;
