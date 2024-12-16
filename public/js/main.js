@@ -181,10 +181,7 @@ function handleIceCandidate(event) {
 function handleRemoteStreamAdded(event) {
   console.log('Remote stream added.');
   console.log(event)
-  // remoteStream = event.stream;
-  // remoteVideo.srcObject = remoteStream;
-  
-  const [remoteStream] = event.streams;
+  remoteStream = event.stream;
   remoteVideo.srcObject = remoteStream;
 }
 
