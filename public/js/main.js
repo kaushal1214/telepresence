@@ -96,6 +96,13 @@ socket.on('message', function(message) {
 var localVideo = document.querySelector('#localVideo');
 var remoteVideo = document.querySelector('#remoteVideo');
 
+if (location.hostname !== 'localhost') {
+  requestTurn(
+    'https://computeengineondemand.appspot.com/turn?username=41784574&key=4080218913'
+  );
+
+  
+}
 navigator.mediaDevices.getUserMedia({
   audio: true,
   video: true
@@ -121,13 +128,7 @@ var constraints = {
 
 console.log('Getting user media with constraints', constraints);
 
-if (location.hostname !== 'localhost') {
-  requestTurn(
-    'https://computeengineondemand.appspot.com/turn?username=41784574&key=4080218913'
-  );
 
-  
-}
 
 function maybeStart() {
   console.log('>>>>>>> maybeStart() ', isStarted, localStream, isChannelReady);
