@@ -239,7 +239,7 @@ function requestTurn(turnURL) {
 }
 
 function controlRobot(dataFrame){
-  if(Android){
+  if(typeof Android != 'undefined'){
     Android.controlTheBot(dataFrame)
   }
 }
