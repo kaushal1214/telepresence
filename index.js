@@ -82,7 +82,6 @@ socket.on('connection', function(data){
       io.sockets.in(room).emit('ready');
     } else { // max two clients
       socket.emit('full', room);
-	socket.delete(room);
     }
   });
 
