@@ -10,7 +10,7 @@ var turnReady;
 
 var pcConfig = {
   'iceServers': [{
-    'urls': 'stun.voxgratia.org'
+    'urls': 'stun:stun.voxgratia.org'
   }]
 };
 
