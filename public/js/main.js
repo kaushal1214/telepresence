@@ -122,9 +122,11 @@ var constraints = {
 console.log('Getting user media with constraints', constraints);
 
 if (location.hostname !== 'localhost') {
-  requestTurn(
-    'https://computeengineondemand.appspot.com/turn?username=41784574&key=4080218913'
-  );
+  // requestTurn(
+  //   'https://computeengineondemand.appspot.com/turn?username=41784574&key=4080218913'
+  // );
+
+  pcConfig.
 }
 
 function maybeStart() {
@@ -211,6 +213,15 @@ function onCreateSessionDescriptionError(error) {
 
 function requestTurn(turnURL) {
   var turnExists = false;
+
+  pcConfig.iceServers.push({
+            urls: 'turn:openrelay.metered.ca:80',
+            username: 'openrelayproject',
+            credentials: 'openrelayproject'
+        });
+  turnReady = true;
+  turnExists = true;
+  
   for (var i in pcConfig.iceServers) {
     if (pcConfig.iceServers[i].urls.substr(0, 5) === 'turn:') {
       turnExists = true;
