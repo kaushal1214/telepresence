@@ -162,6 +162,8 @@ function createPeerConnection() {
     pc.onicecandidate = handleIceCandidate;
     pc.onaddstream = handleRemoteStreamAdded;
     pc.onremovestream = handleRemoteStreamRemoved;
+
+      localStream.getTracks().forEach(track => pc.addTrack(track, localStream));
     
     console.log('Created RTCPeerConnnection');
     
