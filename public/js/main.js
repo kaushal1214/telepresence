@@ -246,7 +246,7 @@ function controlRobot(dataFrame){
 
 socket.on('control',function data(data){
   console.log(data)
-  controlRobot(data)
+  controlRobot(JSON.stringify(data))
 });
 
 
