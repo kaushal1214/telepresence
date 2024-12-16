@@ -103,14 +103,7 @@ if (location.hostname !== 'localhost') {
 
   
 }
-navigator.mediaDevices.getUserMedia({
-  audio: true,
-  video: true
-})
-.then(gotStream)
-.catch(function(e) {
-  alert('getUserMedia() error: ' + e.name);
-});
+
 
 function gotStream(stream) {
   console.log('Adding local stream.');
@@ -158,6 +151,14 @@ function createPeerConnection() {
     pc.onaddstream = handleRemoteStreamAdded;
     pc.onremovestream = handleRemoteStreamRemoved;
     console.log('Created RTCPeerConnnection');
+    navigator.mediaDevices.getUserMedia({
+      audio: true,
+      video: true
+    })
+    .then(gotStream)
+    .catch(function(e) {
+      alert('getUserMedia() error: ' + e.name);
+    });
   } catch (e) {
     console.log('Failed to create PeerConnection, exception: ' + e.message);
     alert('Cannot create RTCPeerConnection object.');
